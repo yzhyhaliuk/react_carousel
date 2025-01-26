@@ -102,7 +102,7 @@ class App extends React.Component<{}, State> {
               <p>Should the carousel be infinite?</p>
               <input
                 type="radio"
-                name="answer"
+                name="beInfinite"
                 value="yes"
                 id="yes"
                 onChange={() => setIsInfinite(true)}
@@ -110,7 +110,7 @@ class App extends React.Component<{}, State> {
               <label htmlFor="yes">Yes </label>
               <input
                 type="radio"
-                name="answer"
+                name="beInfinite"
                 value="no"
                 id="no"
                 onChange={() => setIsInfinite(false)}

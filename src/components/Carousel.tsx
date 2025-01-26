@@ -31,6 +31,11 @@ const Carousel: React.FC<Props> = ({
 
   const maxIndex = Math.max(0, images.length - frameSize);
 
+  const imagesWithId = images.map((url, index) => ({
+    id: `image-${index}`,
+    url,
+  }));
+
   const handleNext = () => {
     setCurrentIndex(prev =>
       infinite
@@ -50,16 +55,16 @@ const Carousel: React.FC<Props> = ({
           transition: `transform ${animationDuration}ms ease`,
         }}
       >
-        {images.map((image, index) => (
-          <li key={index}>
-            <img src={image} alt={`${index + 1}`} width={itemWidth} />
+        {imagesWithId.map(image => (
+          <li key={image.id}>
+            <img src={image.url} alt={image.id} width={itemWidth} />
           </li>
         ))}
       </ul>
 
       <button
         type="button"
-        className={classNames('button', {
+        className={classNames('Carousel__button', {
           disabled: currentIndex === 0 && !infinite,
         })}
         onClick={handlePrev}
@@ -69,7 +74,7 @@ const Carousel: React.FC<Props> = ({
       <button
         data-cy="next"
         type="button"
-        className={classNames('button', {
+        className={classNames('Carousel__button', {
           disabled: currentIndex === maxIndex && !infinite,
         })}
         onClick={handleNext}
